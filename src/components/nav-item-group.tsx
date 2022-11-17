@@ -82,6 +82,9 @@ export default function NavItemGroup({ name, navItems }: NavItemGroupProps) {
     }
   }, [name, isOpen, onGroupButtonClick])
 
+  console.log(styles.navLinkListWrapper[popupVisible ? "opened" : "closed"])
+  console.log(styles.navLinkListLink[!isSmallScreen() ? "desktop" : "mobile"])
+
   return (
     <Flex
       data-id={`${name}-group-wrapper`}
@@ -112,7 +115,14 @@ export default function NavItemGroup({ name, navItems }: NavItemGroupProps) {
           >
             {navItems.map((navItem) => (
               <li key={navItem.id}>
-                <NavLink to={navItem.href} className={styles.navLinkListLink}>
+                <NavLink
+                  to={navItem.href}
+                  className={
+                    styles.navLinkListLink[
+                      !isSmallScreen() ? "desktop" : "mobile"
+                    ]
+                  }
+                >
                   <Flex variant="start" gap={3}>
                     {navItem.icon && (
                       <GatsbyImage

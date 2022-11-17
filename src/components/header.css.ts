@@ -8,8 +8,10 @@ export const desktopHeaderNavWrapper = style({
   display: "none",
   "@media": {
     [media.small]: {
-      display: "block",
+      display: "flex",
+      alignItems: "center",
       paddingTop: theme.space[4],
+      justifyContent: "space-between",
     },
   },
 })
@@ -18,11 +20,11 @@ const mobileHeaderNavWrapperBase = style({
   display: "block",
   position: "relative",
   paddingTop: theme.space[3],
-  // "@media": {
-  //   [media.small]: {
-  //     display: "none",
-  //   },
-  // },
+  "@media": {
+    [media.small]: {
+      display: "none",
+    },
+  },
 })
 
 export const mobileHeaderNavWrapper = styleVariants({

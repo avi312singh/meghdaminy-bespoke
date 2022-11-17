@@ -7,7 +7,6 @@ import {
   FlexList,
   Space,
   NavLink,
-  Button,
   InteractiveIcon,
   Nudge,
   VisuallyHidden,
@@ -21,7 +20,6 @@ import {
   mobileNavSVGColorWrapper,
 } from "./header.css"
 import NavItemGroup, { NavItemGroupNavItem } from "./nav-item-group"
-import BrandLogo from "./brand-logo"
 
 type NavItem = {
   id: string
@@ -101,17 +99,25 @@ export default function Header() {
 
   return (
     <header>
-      {/* <Container className={desktopHeaderNavWrapper}>
-        <Space size={2} />
-        <Flex variant="spaceBetween">
-          <NavLink to="/">
-            <VisuallyHidden>Home</VisuallyHidden>
-            <BrandLogo />
-          </NavLink>
-          <nav>
-            <FlexList gap={4}>
-              {navItems &&
-                navItems.map((navItem) => (
+      <Container className={desktopHeaderNavWrapper}>
+        <Flex variant="start">
+          <Space size={2} />
+          <Nudge left={3}>
+            <InteractiveIcon
+              title="Toggle menu"
+              onClick={() => setOpen(!isOpen)}
+              className={mobileNavSVGColorWrapper["primary"]}
+            >
+              {console.log(isOpen)}
+              {isOpen ? <X /> : <Menu />}
+            </InteractiveIcon>
+          </Nudge>
+        </Flex>
+        {isOpen && (
+          <div className={desktopHeaderNavWrapper}>
+            <nav>
+              <FlexList responsive variant="center">
+                {navItems?.map((navItem) => (
                   <li key={navItem.id}>
                     {navItem.navItemType === "Group" ? (
                       <NavItemGroup
@@ -119,15 +125,29 @@ export default function Header() {
                         navItems={navItem.navItems}
                       />
                     ) : (
-                      <NavLink to={navItem.href}>{navItem.text }</NavLink>
+                      <NavLink to={navItem.href}>{navItem.text}</NavLink>
                     )}
                   </li>
                 ))}
-            </FlexList>
+              </FlexList>
+            </nav>
+          </div>
+        )}
+        <Flex variant="end">
+          <NavLink to="/">
+            <VisuallyHidden>Home</VisuallyHidden>
+          </NavLink>
+          <nav>
+            <span className={mobileNavSVGColorWrapper["primary"]}>
+              <NavLink to="/">
+                <VisuallyHidden>Home</VisuallyHidden>
+                <Text variant="heading">Megh Da Miny Bespoke</Text>
+                <Text variant="medium">Kaya Sharma</Text>
+              </NavLink>
+            </span>
           </nav>
-          <div>{cta && <Button to={cta.href}>{cta.text }</Button>}</div>
         </Flex>
-      </Container> */}
+      </Container>
       <Container className={mobileHeaderNavWrapper[isOpen ? "open" : "closed"]}>
         <Space size={2} />
         <Flex variant="spaceBetween">
