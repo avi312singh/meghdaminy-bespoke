@@ -246,6 +246,7 @@ export type TextVariants =
   | "center"
   | "bold"
   | "carouselHeading"
+  | "footer"
 
 export const text: Record<TextVariants, string> = styleVariants({
   body: [
@@ -304,13 +305,11 @@ export const text: Record<TextVariants, string> = styleVariants({
   carouselHeading: [
     margin0,
     {
-      // marginBottom: theme.space[3],
       fontFamily: theme.fonts.mono,
       fontSize: theme.fontSizes[1],
       fontWeight: theme.fontWeights.extrabold,
       lineHeight: theme.lineHeights.tight,
       letterSpacing: theme.letterSpacings.tight,
-      // marginBottom: theme.space[6],
       transform: "translate(-10%, -400%)",
       bottom: 0,
       right: 0,
@@ -320,7 +319,6 @@ export const text: Record<TextVariants, string> = styleVariants({
       "@media": {
         [media.medium]: {
           fontSize: theme.fontSizes[5],
-          // marginBottom: theme.space[13],
         },
       },
     },
@@ -410,6 +408,14 @@ export const text: Record<TextVariants, string> = styleVariants({
           fontSize: "360px",
         },
       },
+    },
+  ],
+  footer: [
+    margin0,
+    {
+      fontSize: theme.fontSizes[1],
+      marginBottom: theme.space[2],
+      color: theme.colors.primary,
     },
   ],
   center: {
@@ -600,7 +606,7 @@ export const icons: Record<IconSizes, string> = styleVariants(
 )
 
 export const iconLink = style({
-  color: theme.colors.text,
+  color: theme.colors.primary,
   marginRight: theme.space[3],
   ":hover": {
     color: theme.colors.active,

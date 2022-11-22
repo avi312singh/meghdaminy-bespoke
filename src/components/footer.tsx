@@ -15,7 +15,6 @@ import {
   Box,
   Space,
   NavLink,
-  Text,
   IconLink,
   VisuallyHidden,
   HomepageLink,
@@ -87,17 +86,6 @@ export default function Footer() {
       layout {
         footer {
           id
-          links {
-            id
-            href
-            text
-          }
-          meta {
-            id
-            href
-            text
-          }
-          copyright
           socialLinks {
             id
             service
@@ -116,7 +104,6 @@ export default function Footer() {
         <Flex variant="start" responsive>
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
-            {/* <BrandLogo /> */}
           </NavLink>
           <Space />
           <FlexList>
@@ -136,28 +123,10 @@ export default function Footer() {
               })}
           </FlexList>
         </Flex>
-        <Space size={5} />
+        <Space size={2} />
         <Flex variant="start" responsive>
-          <FlexList variant="start" responsive>
-            {links &&
-              links.map((link) => (
-                <li key={link.id}>
-                  <NavLink to={link.href}>{link.text}</NavLink>
-                </li>
-              ))}
-          </FlexList>
+          <FlexList variant="start" responsive></FlexList>
           <Space />
-          <FlexList>
-            {meta &&
-              meta.map((link) => (
-                <li key={link.id}>
-                  <NavLink to={link.href}>
-                    <Text variant="small">{link.text}</Text>
-                  </NavLink>
-                </li>
-              ))}
-          </FlexList>
-          <Text variant="small">{copyright}</Text>
         </Flex>
       </Container>
       <Space size={3} />
