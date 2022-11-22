@@ -245,14 +245,10 @@ exports.createSchemaCustomization = async ({ actions }) => {
     }
 
     enum SocialService {
-      TWITTER
       FACEBOOK
       INSTAGRAM
-      YOUTUBE
-      LINKEDIN
-      GITHUB
-      DISCORD
-      TWITCH
+      GOOGLE
+      YELL
     }
 
     interface SocialLink implements Node {
