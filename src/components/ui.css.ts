@@ -18,7 +18,7 @@ export const container = style({
   paddingRight: theme.space[4],
 })
 
-export type Containers = "normal" | "wide" | "narrow" | "tight" | "fullbleed"
+export type Containers = "normal" | "wide" | "narrow" | "tight"
 
 export const containers: Record<Containers, string> = styleVariants({
   normal: [container],
@@ -245,6 +245,7 @@ export type TextVariants =
   | "mega"
   | "center"
   | "bold"
+  | "carouselHeading"
 
 export const text: Record<TextVariants, string> = styleVariants({
   body: [
@@ -296,6 +297,30 @@ export const text: Record<TextVariants, string> = styleVariants({
       "@media": {
         [media.medium]: {
           fontSize: theme.fontSizes[6],
+        },
+      },
+    },
+  ],
+  carouselHeading: [
+    margin0,
+    {
+      // marginBottom: theme.space[3],
+      fontFamily: theme.fonts.mono,
+      fontSize: theme.fontSizes[1],
+      fontWeight: theme.fontWeights.extrabold,
+      lineHeight: theme.lineHeights.tight,
+      letterSpacing: theme.letterSpacings.tight,
+      // marginBottom: theme.space[6],
+      transform: "translate(-10%, -400%)",
+      bottom: 0,
+      right: 0,
+      position: "absolute",
+      zIndex: 2,
+      color: theme.colors.background,
+      "@media": {
+        [media.medium]: {
+          fontSize: theme.fontSizes[5],
+          // marginBottom: theme.space[13],
         },
       },
     },
