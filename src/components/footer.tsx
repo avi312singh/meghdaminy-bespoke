@@ -1,13 +1,6 @@
 import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import {
-  Twitter,
-  Twitch,
-  Instagram,
-  Facebook,
-  Youtube,
-  GitHub,
-} from "react-feather"
+import { Instagram, Facebook, BookOpen, MapPin } from "react-feather"
 import {
   Container,
   Flex,
@@ -17,16 +10,10 @@ import {
   NavLink,
   IconLink,
   VisuallyHidden,
-  HomepageLink,
 } from "./ui"
 import BrandLogo from "./brand-logo"
 
 const socialMedia = {
-  TWITTER: {
-    url: "https://twitter.com",
-    name: "Twitter",
-    icon: <Twitter />,
-  },
   INSTAGRAM: {
     url: "https://instagram.com",
     name: "Instagram",
@@ -37,20 +24,15 @@ const socialMedia = {
     name: "Facebook",
     icon: <Facebook />,
   },
-  YOUTUBE: {
-    url: "https://youtube.com",
-    name: "YouTube",
-    icon: <Youtube />,
+  GOOGLE: {
+    url: "https://maps.app.goo.gl",
+    name: "Google",
+    icon: <MapPin />,
   },
-  GITHUB: {
-    url: "https://github.com",
-    name: "GitHub",
-    icon: <GitHub />,
-  },
-  TWITCH: {
-    url: "https://twitch.tv",
-    name: "Twitch",
-    icon: <Twitch />,
+  YELL: {
+    url: "https://yell.com/biz",
+    name: "Yell",
+    icon: <BookOpen />,
   },
 }
 
@@ -72,9 +54,6 @@ interface FooterData {
   layout: {
     footer: {
       id: string
-      links: HomepageLink[]
-      meta: { id: string; href: string; text: string }[]
-      copyright: string
       socialLinks: { id: string; service: string; username: string }[]
     }
   }
@@ -96,7 +75,7 @@ export default function Footer() {
     }
   `)
 
-  const { links, meta, socialLinks, copyright } = data.layout.footer
+  const { socialLinks } = data.layout.footer
 
   return (
     <Box as="footer" paddingY={4}>
