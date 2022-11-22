@@ -1,5 +1,4 @@
 import { HeroProps } from "./hero"
-
 import { AboutHeroProps } from "./about-hero"
 
 export { default as HomepageHero } from "./hero"

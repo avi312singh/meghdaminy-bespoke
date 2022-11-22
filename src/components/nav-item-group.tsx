@@ -11,6 +11,7 @@ import {
 import Caret from "./caret"
 import * as styles from "./nav-item-group.css"
 import { media } from "./ui.css"
+import { theme } from "../theme.css"
 
 export type NavItemGroupNavItem = {
   id: string
@@ -82,9 +83,6 @@ export default function NavItemGroup({ name, navItems }: NavItemGroupProps) {
     }
   }, [name, isOpen, onGroupButtonClick])
 
-  console.log(styles.navLinkListWrapper[popupVisible ? "opened" : "closed"])
-  console.log(styles.navLinkListLink[!isSmallScreen() ? "desktop" : "mobile"])
-
   return (
     <Flex
       data-id={`${name}-group-wrapper`}
@@ -117,10 +115,11 @@ export default function NavItemGroup({ name, navItems }: NavItemGroupProps) {
               <li key={navItem.id}>
                 <NavLink
                   to={navItem.href}
-                  className={
-                    styles.navLinkListLink[
-                      !isSmallScreen() ? "desktop" : "mobile"
-                    ]
+                  className={styles.navLinkListLink}
+                  style={
+                    isSmallScreen()
+                      ? { color: theme.colors.background }
+                      : { color: theme.colors.primary }
                   }
                 >
                   <Flex variant="start" gap={3}>

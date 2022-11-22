@@ -42,23 +42,6 @@ export const containers: Record<Containers, string> = styleVariants({
       maxWidth: theme.sizes.tight,
     },
   ],
-  fullbleed: [
-    container,
-    {
-      paddingLeft: 0,
-      paddingRight: 0,
-      paddingTop: theme.space[4],
-      paddingBottom: theme.space[4],
-      "@media": {
-        [media.medium]: {
-          paddingLeft: theme.space[4],
-          paddingRight: theme.space[4],
-          paddingTop: theme.space[5],
-          paddingBottom: theme.space[5],
-        },
-      },
-    },
-  ],
 })
 
 export const flex = style({
@@ -420,7 +403,7 @@ export const link = style({
 })
 
 export const navlink = style({
-  color: "inherit",
+  color: theme.colors.primary,
   textDecoration: "none",
   transitionProperty: "color",
   transitionDuration: "0.2s",

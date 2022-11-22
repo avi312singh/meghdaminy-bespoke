@@ -77,6 +77,12 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
   // abstract interfaces
   actions.createTypes(/* GraphQL */ `
+    interface CarouselSlides implements Node {
+      id: ID!
+      hasText: Boolean
+      imageText: String
+      image: GatsbyImageData
+    }
     interface HomepageBlock implements Node {
       id: ID!
       blocktype: String
@@ -127,6 +133,11 @@ exports.createSchemaCustomization = async ({ actions }) => {
       links: [HomepageLink]
     }
 
+    interface Carousel implements Node {
+      id: ID!
+      carouselSlides: [CarouselSlides]
+    }
+
     interface HomepageFeature implements Node & HomepageBlock {
       id: ID!
       blocktype: String
@@ -135,15 +146,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       text: String
       image: HomepageImage
       links: [HomepageLink]
-    }
-
-    interface HomepageFeatureList implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      kicker: String
-      heading: String
-      text: String
-      content: [HomepageFeature]
     }
 
     interface HomepageCta implements Node & HomepageBlock {
@@ -160,13 +162,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       id: ID!
       image: HomepageImage
       alt: String
-    }
-
-    interface HomepageLogoList implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      text: String
-      logos: [HomepageLogo]
     }
 
     interface HomepageTestimonial implements Node {
@@ -302,36 +297,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       label: String
     }
 
-    interface AboutStatList implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      content: [AboutStat]
-    }
-
-    interface AboutProfile implements Node {
-      id: ID!
-      image: HomepageImage
-      name: String
-      jobTitle: String
-    }
-
-    interface AboutLeadership implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      kicker: String
-      heading: String
-      subhead: String
-      content: [AboutProfile]
-    }
-
-    interface AboutLogoList implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      heading: String
-      links: [HomepageLink]
-      logos: [HomepageLogo]
-    }
-
     interface Page implements Node {
       id: ID!
       slug: String!
@@ -399,15 +364,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       links: [HomepageLink] @link(from: "links___NODE")
     }
 
-    type ContentfulHomepageFeatureList implements Node & HomepageBlock & HomepageFeatureList
-      @dontInfer {
-      blocktype: String @blocktype
-      kicker: String
-      heading: String
-      text: String
-      content: [HomepageFeature] @link(from: "content___NODE")
-    }
-
     type ContentfulHomepageCta implements Node & HomepageBlock & HomepageCta
       @dontInfer {
       blocktype: String @blocktype
@@ -422,84 +378,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       id: ID!
       image: HomepageImage @link(from: "image___NODE")
       alt: String
-    }
-
-    type ContentfulHomepageLogoList implements Node & HomepageBlock & HomepageLogoList
-      @dontInfer {
-      blocktype: String @blocktype
-      text: String
-      logos: [HomepageLogo] @link(from: "logos___NODE")
-    }
-
-    type ContentfulHomepageTestimonial implements Node & HomepageTestimonial
-      @dontInfer {
-      id: ID!
-      quote: String
-      source: String
-      avatar: HomepageImage @link(from: "avatar___NODE")
-    }
-
-    type ContentfulHomepageTestimonialList implements Node & HomepageBlock & HomepageTestimonialList
-      @dontInfer {
-      id: ID!
-      blocktype: String @blocktype
-      kicker: String
-      heading: String
-      content: [HomepageTestimonial] @link(from: "content___NODE")
-    }
-
-    type ContentfulHomepageBenefit implements Node & HomepageBenefit
-      @dontInfer {
-      id: ID!
-      heading: String
-      text: String
-      image: HomepageImage @link(from: "image___NODE")
-    }
-
-    type ContentfulHomepageBenefitList implements Node & HomepageBlock & HomepageBenefitList
-      @dontInfer {
-      id: ID!
-      blocktype: String @blocktype
-      heading: String
-      text: String
-      content: [HomepageBenefit] @link(from: "content___NODE")
-    }
-
-    type ContentfulHomepageStat implements Node & HomepageStat @dontInfer {
-      id: ID!
-      value: String
-      label: String
-      heading: String
-    }
-
-    type ContentfulHomepageStatList implements Node & HomepageBlock & HomepageStatList
-      @dontInfer {
-      id: ID!
-      blocktype: String @blocktype
-      kicker: String
-      heading: String
-      text: String
-      image: HomepageImage @link(from: "image___NODE")
-      icon: HomepageImage @link(from: "icon___NODE")
-      content: [HomepageStat] @link(from: "content___NODE")
-      links: [HomepageLink] @link(from: "links___NODE")
-    }
-
-    type ContentfulHomepageProduct implements Node & HomepageProduct
-      @dontInfer {
-      heading: String
-      text: String
-      image: HomepageImage @link(from: "image___NODE")
-      links: [HomepageLink] @link(from: "links___NODE")
-    }
-
-    type ContentfulHomepageProductList implements Node & HomepageProductList & HomepageBlock
-      @dontInfer {
-      blocktype: String @blocktype
-      heading: String
-      kicker: String
-      text: String
-      content: [HomepageProduct] @link(from: "content___NODE")
     }
 
     type ContentfulHomepage implements Node & Homepage @dontInfer {
@@ -526,39 +404,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       id: ID!
       value: String
       label: String
-    }
-
-    type ContentfulAboutStatList implements Node & AboutStatList & HomepageBlock
-      @dontInfer {
-      id: ID!
-      blocktype: String @blocktype
-      content: [AboutStat] @link(from: "content___NODE")
-    }
-
-    type ContentfulAboutProfile implements Node & AboutProfile @dontInfer {
-      id: ID!
-      image: HomepageImage @link(from: "image___NODE")
-      name: String
-      jobTitle: String
-    }
-
-    type ContentfulAboutLeadership implements Node & AboutLeadership & HomepageBlock
-      @dontInfer {
-      id: ID!
-      blocktype: String @blocktype
-      kicker: String
-      heading: String
-      subhead: String
-      content: [AboutProfile] @link(from: "content___NODE")
-    }
-
-    type ContentfulAboutLogoList implements Node & AboutLogoList & HomepageBlock
-      @dontInfer {
-      id: ID!
-      blocktype: String @blocktype
-      heading: String
-      links: [HomepageLink] @link(from: "links___NODE")
-      logos: [HomepageLogo] @link(from: "logos___NODE")
     }
 
     type ContentfulAboutPage implements Node & AboutPage @dontInfer {
@@ -623,4 +468,3 @@ exports.createPages = ({ actions }) => {
     component: require.resolve("./src/components/footer.tsx"),
   })
 }
-      

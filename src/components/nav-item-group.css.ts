@@ -15,7 +15,7 @@ export const navGroupTitle = style([
       [media.small]: {
         padding: 0,
         alignItems: "baseline",
-        color: "inherit",
+        color: theme.colors.primary,
         fontSize: "inherit",
         ":hover": { color: theme.colors.active },
       },

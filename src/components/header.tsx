@@ -102,18 +102,6 @@ export default function Header() {
       <Container className={desktopHeaderNavWrapper}>
         <Flex variant="start">
           <Space size={2} />
-          <Nudge left={3}>
-            <InteractiveIcon
-              title="Toggle menu"
-              onClick={() => setOpen(!isOpen)}
-              className={mobileNavSVGColorWrapper["primary"]}
-            >
-              {console.log(isOpen)}
-              {isOpen ? <X /> : <Menu />}
-            </InteractiveIcon>
-          </Nudge>
-        </Flex>
-        {isOpen && (
           <div className={desktopHeaderNavWrapper}>
             <nav>
               <FlexList responsive variant="center">
@@ -121,18 +109,20 @@ export default function Header() {
                   <li key={navItem.id}>
                     {navItem.navItemType === "Group" ? (
                       <NavItemGroup
-                        name={navItem.name}
+                        name={navItem.name.toUpperCase()}
                         navItems={navItem.navItems}
                       />
                     ) : (
-                      <NavLink to={navItem.href}>{navItem.text}</NavLink>
+                      <NavLink to={navItem.href}>
+                        {navItem.text.toUpperCase()}
+                      </NavLink>
                     )}
                   </li>
                 ))}
               </FlexList>
             </nav>
           </div>
-        )}
+        </Flex>
         <Flex variant="end">
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
