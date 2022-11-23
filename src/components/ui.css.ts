@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css"
+import { globalFontFace, style, styleVariants } from "@vanilla-extract/css"
 import { calc } from "@vanilla-extract/css-utils"
 import { theme } from "../theme.css"
 
@@ -247,8 +247,24 @@ export type TextVariants =
   | "bold"
   | "carouselHeading"
   | "footer"
+  | "header"
+
+export const birdsOfParadise = "BirdsOfParadise"
+
+globalFontFace(birdsOfParadise, {
+  fontStyle: "normal",
+  fontWeight: 400,
+  fontDisplay: "swap",
+  src: `url(/fonts/BirdsOfParadise.woff2) format('woff2')`,
+})
 
 export const text: Record<TextVariants, string> = styleVariants({
+  header: [
+    margin0,
+    {
+      fontFamily: "BirdsOfParadise",
+    },
+  ],
   body: [
     margin0,
     {

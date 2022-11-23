@@ -131,7 +131,7 @@ export default function Header() {
             <span className={mobileNavSVGColorWrapper["primary"]}>
               <NavLink to="/">
                 <VisuallyHidden>Home</VisuallyHidden>
-                <Text variant="heading">Megh Da Miny Bespoke</Text>
+                <Text variant="header">Megh Da Miny Bespoke</Text>
                 <Text variant="medium">Kaya Sharma</Text>
               </NavLink>
             </span>
