@@ -2,6 +2,8 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Container, Box, Heading } from "../components/ui"
+import * as sections from "../components/sections"
+import Fallback from "../components/fallback"
 import SEOHead from "../components/head"
 
 interface PageProps {
@@ -13,6 +15,7 @@ interface PageProps {
       description: string
       image: { id: string; url: string }
       html: string
+      blocks: sections.HomepageBlock[]
     }
   }
 }
@@ -30,6 +33,12 @@ export default function Page(props: PageProps) {
               __html: page.html,
             }}
           />
+          {page.blocks.map((block) => {
+            console.log(page.blocks)
+            const { id, blocktype, ...componentProps } = block
+            const Component = sections[blocktype] || Fallback
+            return <Component key={id} {...(componentProps as any)} />
+          })}
         </Container>
       </Box>
     </Layout>
@@ -51,6 +60,12 @@ export const query = graphql`
         url
       }
       html
+      blocks: content {
+        id
+        blocktype
+        ...BannerContent
+        ...CarouselContent
+      }
     }
   }
 `

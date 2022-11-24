@@ -5,47 +5,22 @@ import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loa
 import Carousel from "react-responsive-carousel/lib/js/components/Carousel/index"
 import { Section, Text } from "./ui"
 
-interface CustomCarouselData {
-  contentfulCarousel: {
-    carouselSlides: [
-      {
-        id: string
-        imageText: string
-        hasText: boolean
-        image: IGatsbyImageData
-        description: string
-      }
-    ]
-  }
+export interface CustomCarouselProps {
+  carouselSlides: [
+    {
+      id: string
+      imageText: string
+      hasText: boolean
+      image: IGatsbyImageData
+      description: string
+    }
+  ]
 }
 
-export default function CustomCarousel() {
-  const data: CustomCarouselData = useStaticQuery(graphql`
-    query customCarousel {
-      contentfulCarousel(contentful_id: { eq: "56hniFmrkeQDh3Tqcy6ZpT" }) {
-        carouselSlides {
-          id
-          hasText
-          imageText
-          image {
-            gatsbyImageData(
-              placeholder: BLURRED
-              layout: FULL_WIDTH
-              formats: [AVIF, WEBP, AUTO]
-            )
-          }
-        }
-        description
-      }
-    }
-  `)
-
-  let { contentfulCarousel } = data
-
+export default function CustomCarousel(props: CustomCarouselProps) {
   return (
     <Section>
       <Carousel
-        // className={classes.indicatorDots}
         autoPlay
         emulateTouch
         infiniteLoop
@@ -56,7 +31,7 @@ export default function CustomCarousel() {
         animationHandler="fade"
         swipeable={false}
       >
-        {contentfulCarousel.carouselSlides.map(
+        {props.carouselSlides.map(
           ({ hasText, image, description, id, imageText }) => {
             const carouselImage = getImage(image as unknown as IGatsbyImageData)
             return (
@@ -71,3 +46,24 @@ export default function CustomCarousel() {
     </Section>
   )
 }
+
+export const query = graphql`
+  fragment CarouselContent on Carousel {
+    carouselSlides {
+      id
+      description
+      hasText
+      imageText
+      image {
+        ... on ContentfulAsset {
+          id
+          gatsbyImageData(
+            layout: FULL_WIDTH
+            placeholder: BLURRED
+            formats: WEBP
+          )
+        }
+      }
+    }
+  }
+`

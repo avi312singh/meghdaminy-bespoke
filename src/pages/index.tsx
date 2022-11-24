@@ -4,7 +4,6 @@ import Layout from "../components/layout"
 import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
 import SEOHead from "../components/head"
-import CustomCarousel from "../components/custom-carousel"
 
 interface HomepageProps {
   data: {
@@ -23,7 +22,6 @@ export default function Homepage({ data }: HomepageProps) {
 
   return (
     <Layout>
-      <CustomCarousel />
       {homepage.blocks.map((block) => {
         const { id, blocktype, ...componentProps } = block
         const Component = sections[blocktype] || Fallback
@@ -49,7 +47,9 @@ export const query = graphql`
       blocks: content {
         id
         blocktype
+        ...CarouselContent
         ...HomepageHeroContent
+        ...BannerContent
       }
     }
   }

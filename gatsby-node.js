@@ -77,15 +77,37 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
   // abstract interfaces
   actions.createTypes(/* GraphQL */ `
-    interface CarouselSlides implements Node {
-      id: ID!
-      hasText: Boolean
-      imageText: String
-      image: GatsbyImageData
-    }
     interface HomepageBlock implements Node {
       id: ID!
       blocktype: String
+    }
+
+    interface HomepageImage implements Node {
+      id: ID!
+      alt: String
+      gatsbyImageData: GatsbyImageData @imagePassthroughArgs
+      url: String
+    }
+
+    interface CarouselSlide implements Node {
+      id: ID!
+      hasText: Boolean
+      imageText: String
+      description: String
+      image: HomepageImage
+    }
+
+    interface Carousel implements Node & HomepageBlock {
+      id: ID!
+      blocktype: String
+      carouselSlides: [CarouselSlide]
+    }
+
+    interface Banner implements Node & HomepageBlock {
+      id: ID!
+      blocktype: String
+      heading: String
+      text: String
     }
 
     interface HomepageLink implements Node {
@@ -115,13 +137,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       navItems: [NavItem]
     }
 
-    interface HomepageImage implements Node {
-      id: ID!
-      alt: String
-      gatsbyImageData: GatsbyImageData @imagePassthroughArgs
-      url: String
-    }
-
     interface HomepageHero implements Node & HomepageBlock {
       id: ID!
       blocktype: String
@@ -131,11 +146,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       image: HomepageImage
       text: String
       links: [HomepageLink]
-    }
-
-    interface Carousel implements Node {
-      id: ID!
-      carouselSlides: [CarouselSlides]
     }
 
     interface HomepageFeature implements Node & HomepageBlock {
@@ -300,15 +310,37 @@ exports.createSchemaCustomization = async ({ actions }) => {
       description: String
       image: HomepageImage
       html: String!
+      content: [HomepageBlock]
     }
   `)
-
   // CMS-specific types for Homepage
   actions.createTypes(/* GraphQL */ `
     type ContentfulHomepageLink implements Node & HomepageLink @dontInfer {
       id: ID!
       href: String
       text: String
+    }
+
+    type ContentfulBanner implements Node & Banner & HomepageBlock @dontInfer {
+      id: ID!
+      blocktype: String @blocktype
+      heading: String
+      text: String
+    }
+
+    type ContentfulCarouselSlide implements Node & CarouselSlide {
+      id: ID!
+      hasText: Boolean
+      imageText: String
+      description: String
+      image: HomepageImage @link(from: "image___NODE")
+    }
+
+    type ContentfulCarousel implements Node & HomepageBlock & Carousel
+      @dontInfer {
+      id: ID!
+      blocktype: String @blocktype
+      carouselSlides: [CarouselSlide] @link(from: "carouselSlides___NODE")
     }
 
     type ContentfulNavItem implements Node & NavItem & HeaderNavItem
@@ -449,6 +481,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       description: String
       image: HomepageImage @link(from: "image___NODE")
       html: String! @richText
+      content: [HomepageBlock] @link(from: "content___NODE")
     }
   `)
 }
