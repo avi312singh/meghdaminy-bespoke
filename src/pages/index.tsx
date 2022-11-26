@@ -19,6 +19,7 @@ interface HomepageProps {
 
 export default function Homepage({ data }: HomepageProps) {
   const { homepage } = data
+  console.log(homepage)
 
   return (
     <Layout>
@@ -50,6 +51,7 @@ export const query = graphql`
         ...CarouselContent
         ...HomepageHeroContent
         ...BannerContent
+        ...MultipleImagesContent
       }
     }
   }

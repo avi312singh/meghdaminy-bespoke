@@ -41,7 +41,14 @@ export const query = graphql`
     text
     image {
       id
-      gatsbyImageData
+      ... on ContentfulAsset {
+        id
+        gatsbyImageData(
+          layout: FULL_WIDTH
+          placeholder: BLURRED
+          formats: [AVIF, WEBP, AUTO]
+        )
+      }
       alt
     }
   }

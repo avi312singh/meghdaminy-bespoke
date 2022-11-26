@@ -14,6 +14,7 @@ interface PageProps {
       slug: string
       description: string
       image: { id: string; url: string }
+      showBody: boolean
       html: string
       blocks: sections.HomepageBlock[]
     }
@@ -22,25 +23,39 @@ interface PageProps {
 
 export default function Page(props: PageProps) {
   const { page } = props.data
+  const { title, showBody, html, blocks } = page
 
   return (
     <Layout>
-      <Box paddingY={5}>
-        <Container width="narrow">
-          <Heading as="h1">{page.title}</Heading>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: page.html,
-            }}
-          />
-          {page.blocks.map((block) => {
-            console.log(page.blocks)
-            const { id, blocktype, ...componentProps } = block
-            const Component = sections[blocktype] || Fallback
-            return <Component key={id} {...(componentProps as any)} />
-          })}
-        </Container>
-      </Box>
+      {title && showBody ? (
+        <Box paddingY={5}>
+          <Container width="narrow">
+            <Heading as="h1">{title}</Heading>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: html,
+              }}
+            />
+          </Container>
+        </Box>
+      ) : (
+        title &&
+        !showBody && (
+          <Box paddingY={3}>
+            <Container width="narrow">
+              <Heading as="h1">{title}</Heading>
+            </Container>
+          </Box>
+        )
+      )}
+
+      {blocks &&
+        blocks.map((block) => {
+          const { id, blocktype, ...componentProps } = block
+          console.log(blocktype)
+          const Component = sections[blocktype] || Fallback
+          return <Component key={id} {...(componentProps as any)} />
+        })}
     </Layout>
   )
 }
@@ -59,12 +74,21 @@ export const query = graphql`
         id
         url
       }
+      showBody
       html
       blocks: content {
         id
         blocktype
         ...BannerContent
-        ...CarouselContent
+        ... on ContentfulCarousel {
+          id
+          carouselSlides {
+            image {
+              gatsbyImageData(layout: FULL_WIDTH)
+            }
+          }
+        }
+        ...MultipleImagesContent
       }
     }
   }

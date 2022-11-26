@@ -108,6 +108,13 @@ exports.createSchemaCustomization = async ({ actions }) => {
       blocktype: String
       heading: String
       text: String
+      html: String!
+    }
+
+    interface MultipleImages implements Node & HomepageBlock {
+      id: ID!
+      blocktype: String
+      images: [HomepageImage]
     }
 
     interface HomepageLink implements Node {
@@ -245,6 +252,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       title: String
       description: String
       image: HomepageImage
+      html: String!
       content: [HomepageBlock]
     }
 
@@ -309,6 +317,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       title: String
       description: String
       image: HomepageImage
+      showBody: Boolean!
       html: String!
       content: [HomepageBlock]
     }
@@ -326,6 +335,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       blocktype: String @blocktype
       heading: String
       text: String
+      html: String! @richText
     }
 
     type ContentfulCarouselSlide implements Node & CarouselSlide {
@@ -341,6 +351,13 @@ exports.createSchemaCustomization = async ({ actions }) => {
       id: ID!
       blocktype: String @blocktype
       carouselSlides: [CarouselSlide] @link(from: "carouselSlides___NODE")
+    }
+
+    type ContentfulMultipleImages implements Node & HomepageBlock & MultipleImages
+      @dontInfer {
+      id: ID!
+      blocktype: String @blocktype
+      images: [HomepageImage] @link(from: "images___NODE")
     }
 
     type ContentfulNavItem implements Node & NavItem & HeaderNavItem
@@ -413,6 +430,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       title: String
       description: String
       image: HomepageImage @link(from: "image___NODE")
+      html: String! @richText
       content: [HomepageBlock] @link(from: "content___NODE")
     }
   `)
@@ -480,6 +498,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       title: String
       description: String
       image: HomepageImage @link(from: "image___NODE")
+      showBody: Boolean!
       html: String! @richText
       content: [HomepageBlock] @link(from: "content___NODE")
     }
