@@ -15,6 +15,7 @@ export default function Banner({ heading, text, html }: IBannerProps) {
         <Container>
           <Heading>{heading}</Heading>
           <Text bold>{text}</Text>
+          <Text variant="globalComicSans">{text}</Text>
           <div
             dangerouslySetInnerHTML={{
               __html: html,

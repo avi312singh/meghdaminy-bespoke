@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css"
+import { globalFontFace, style, styleVariants } from "@vanilla-extract/css"
 import { calc } from "@vanilla-extract/css-utils"
 import { theme } from "../theme.css"
 
@@ -257,8 +257,19 @@ export type TextVariants =
   | "bold"
   | "carouselHeading"
   | "footer"
+  | "GlobalInterVar"
+
+const interVar = "GlobalInterVar"
+
+globalFontFace(interVar, {
+  fontWeight: "100 900",
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  src: 'url(/fonts/Inter-roman.var.woff2) format("woff2")',
+})
 
 export const text: Record<TextVariants, string> = styleVariants({
+  GlobalInterVar: [{ fontFamily: interVar }],
   body: [
     margin0,
     {
