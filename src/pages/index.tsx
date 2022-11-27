@@ -24,7 +24,6 @@ export default function Homepage({ data }: HomepageProps) {
   return (
     <Layout>
       {homepage.blocks.map((block) => {
-        console.log(block)
         const { id, blocktype, ...componentProps } = block
         const Component = sections[blocktype] || Fallback
         return <Component key={id} {...(componentProps as any)} />
