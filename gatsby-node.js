@@ -155,16 +155,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       links: [HomepageLink]
     }
 
-    interface HomepageFeature implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      heading: String
-      kicker: String
-      text: String
-      image: HomepageImage
-      links: [HomepageLink]
-    }
-
     interface HomepageCta implements Node & HomepageBlock {
       id: ID!
       blocktype: String
@@ -181,70 +171,19 @@ exports.createSchemaCustomization = async ({ actions }) => {
       alt: String
     }
 
-    interface HomepageTestimonial implements Node {
+    interface Testimonial implements Node {
       id: ID!
       quote: String
       source: String
       avatar: HomepageImage
     }
 
-    interface HomepageTestimonialList implements Node & HomepageBlock {
+    interface TestimonialList implements Node & HomepageBlock {
       id: ID!
       blocktype: String
       kicker: String
       heading: String
-      content: [HomepageTestimonial]
-    }
-
-    interface HomepageBenefit implements Node {
-      id: ID!
-      heading: String
-      text: String
-      image: HomepageImage
-    }
-
-    interface HomepageBenefitList implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      heading: String
-      text: String
-      content: [HomepageBenefit]
-    }
-
-    interface HomepageStat implements Node {
-      id: ID!
-      value: String
-      label: String
-      heading: String
-    }
-
-    interface HomepageStatList implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      kicker: String
-      heading: String
-      text: String
-      image: HomepageImage
-      icon: HomepageImage
-      content: [HomepageStat]
-      links: [HomepageLink]
-    }
-
-    interface HomepageProduct implements Node {
-      id: ID!
-      heading: String
-      text: String
-      image: HomepageImage
-      links: [HomepageLink]
-    }
-
-    interface HomepageProductList implements Node & HomepageBlock {
-      id: ID!
-      blocktype: String
-      heading: String
-      kicker: String
-      text: String
-      content: [HomepageProduct]
+      content: [Testimonial]
     }
 
     interface Homepage implements Node {
@@ -399,16 +338,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
       links: [HomepageLink] @link(from: "links___NODE")
     }
 
-    type ContentfulHomepageFeature implements Node & HomepageBlock & HomepageFeature
-      @dontInfer {
-      blocktype: String @blocktype
-      heading: String
-      kicker: String
-      text: String
-      image: HomepageImage @link(from: "image___NODE")
-      links: [HomepageLink] @link(from: "links___NODE")
-    }
-
     type ContentfulHomepageCta implements Node & HomepageBlock & HomepageCta
       @dontInfer {
       blocktype: String @blocktype
@@ -423,6 +352,22 @@ exports.createSchemaCustomization = async ({ actions }) => {
       id: ID!
       image: HomepageImage @link(from: "image___NODE")
       alt: String
+    }
+
+    type ContentfulTestimonial implements Node & Testimonial @dontInfer {
+      id: ID!
+      quote: String
+      source: String
+      avatar: HomepageImage @link(from: "avatar___NODE")
+    }
+
+    type ContentfulTestimonialList implements Node & HomepageBlock & TestimonialList
+      @dontInfer {
+      id: ID!
+      blocktype: String @blocktype
+      kicker: String
+      heading: String
+      content: [Testimonial] @link(from: "content___NODE")
     }
 
     type ContentfulHomepage implements Node & Homepage @dontInfer {

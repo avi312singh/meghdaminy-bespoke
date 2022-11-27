@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { Section, Container, Heading, Text } from "./ui"
+import { Section, Container, Heading, Text, Flex } from "./ui"
 
 interface IBannerProps {
   heading: string
@@ -11,15 +11,17 @@ interface IBannerProps {
 export default function Banner({ heading, text, html }: IBannerProps) {
   return (
     <Section>
-      <Container>
-        <Heading>{heading}</Heading>
-        <Text>{text}</Text>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: html,
-          }}
-        />
-      </Container>
+      <Flex variant="center">
+        <Container>
+          <Heading>{heading}</Heading>
+          <Text bold>{text}</Text>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: html,
+            }}
+          />
+        </Container>
+      </Flex>
     </Section>
   )
 }
