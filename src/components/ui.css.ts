@@ -60,6 +60,7 @@ export type FlexVariants =
   | "spaceBetween"
   | "center"
   | "responsive"
+  | "imageBlock"
 
 export const flexVariants: Record<FlexVariants, string> = styleVariants({
   wrap: {
@@ -98,6 +99,15 @@ export const flexVariants: Record<FlexVariants, string> = styleVariants({
     flexDirection: "column",
     "@media": {
       [media.small]: {
+        flexDirection: "row",
+      },
+    },
+  },
+  imageBlock: {
+    flexDirection: "column",
+    "@media": {
+      [media.small]: {
+        justifyContent: "space-between",
         flexDirection: "row",
       },
     },

@@ -12,7 +12,7 @@ export default function ImageBlock({ images }: ImageBlockProps) {
     <Section>
       <Container>
         <Box width="full">
-          <Flex variant="responsive">
+          <Flex variant="imageBlock">
             {images &&
               images.map((image) => (
                 <GatsbyImage
@@ -38,8 +38,8 @@ export const query = graphql`
           layout: CONSTRAINED
           placeholder: BLURRED
           formats: [AVIF, WEBP, AUTO]
-          width: 420
-          height: 720
+          width: 370
+          height: 669
         )
       }
     }
