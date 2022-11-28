@@ -48,6 +48,17 @@ export const query = graphql`
         id
         blocktype
         ...AboutHeroContent
+        ...BannerContent
+        ... on ContentfulCarousel {
+          id
+          carouselSlides {
+            image {
+              gatsbyImageData(layout: FULL_WIDTH)
+            }
+          }
+        }
+        ...MultipleImagesContent
+        ...TestimonialListContent
       }
     }
   }

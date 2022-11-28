@@ -52,7 +52,6 @@ export default function Page(props: PageProps) {
       {blocks &&
         blocks.map((block) => {
           const { id, blocktype, ...componentProps } = block
-          console.log(blocktype)
           const Component = sections[blocktype] || Fallback
           return <Component key={id} {...(componentProps as any)} />
         })}

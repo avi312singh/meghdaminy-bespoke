@@ -108,7 +108,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       blocktype: String
       heading: String
       text: String
-      html: String!
+      longerText: String
     }
 
     interface MultipleImages implements Node & HomepageBlock {
@@ -274,7 +274,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       blocktype: String @blocktype
       heading: String
       text: String
-      html: String! @richText
+      longerText: String
     }
 
     type ContentfulCarouselSlide implements Node & CarouselSlide {

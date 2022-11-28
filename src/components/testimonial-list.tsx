@@ -22,7 +22,6 @@ interface TestimonialProps {
 }
 
 function Testimonial(props: TestimonialProps) {
-  console.log(props)
   return (
     <Flex variant="start">
       {props.avatar && (

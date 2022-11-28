@@ -259,6 +259,7 @@ export type TextVariants =
   | "footer"
   | "header"
   | "headerSmall"
+  | "leadBanner"
 
 export const text: Record<TextVariants, string> = styleVariants({
   header: [
@@ -307,6 +308,17 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontWeight: theme.fontWeights.normal,
       lineHeight: theme.lineHeights.text,
       letterSpacing: theme.letterSpacings.normal,
+    },
+  ],
+  leadBanner: [
+    margin0,
+    {
+      marginBottom: theme.space[3],
+      fontSize: theme.fontSizes[3],
+      fontWeight: theme.fontWeights.normal,
+      lineHeight: theme.lineHeights.text,
+      letterSpacing: theme.letterSpacings.normal,
+      whiteSpace: "pre-line",
     },
   ],
   superHeading: [
