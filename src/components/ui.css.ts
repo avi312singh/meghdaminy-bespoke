@@ -257,8 +257,38 @@ export type TextVariants =
   | "bold"
   | "carouselHeading"
   | "footer"
+  | "header"
+  | "headerSmall"
 
 export const text: Record<TextVariants, string> = styleVariants({
+  header: [
+    margin0,
+    {
+      marginBottom: theme.space[3],
+      fontFamily: theme.fonts.header,
+      fontSize: theme.fontSizes[5],
+      fontWeight: theme.fontWeights.medium,
+      lineHeight: theme.lineHeights.tight,
+      letterSpacing: theme.letterSpacings.tight,
+      "@media": {
+        [media.medium]: {
+          fontSize: theme.fontSizes[6],
+        },
+      },
+    },
+  ],
+  headerSmall: [
+    margin0,
+    {
+      marginBottom: theme.space[2],
+      fontFamily: theme.fonts.header,
+      fontSize: theme.fontSizes[2],
+      fontWeight: theme.fontWeights.medium,
+      lineHeight: theme.lineHeights.tight,
+      letterSpacing: theme.letterSpacings.wide,
+      // textTransform: "uppercase",
+    },
+  ],
   body: [
     margin0,
     {
