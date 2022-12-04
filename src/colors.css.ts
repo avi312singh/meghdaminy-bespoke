@@ -3,6 +3,6 @@ export const colors = {
   text: "#808080",
   primary: "#808080",
   muted: "#f2f2f2",
-  active: "#004287",
+  active: "#999999",
   black: "#000",
 }
