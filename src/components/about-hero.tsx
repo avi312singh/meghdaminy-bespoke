@@ -14,9 +14,11 @@ export default function AboutHero(props: AboutHeroProps) {
   return (
     <Section>
       <Container>
-        <SuperHeading className={styles.aboutHeroHeader}>
-          {props.heading}
-        </SuperHeading>
+        {props.heading && (
+          <SuperHeading className={styles.aboutHeroHeader}>
+            {props.heading}
+          </SuperHeading>
+        )}
         {props.text && (
           <Text className={styles.aboutHeroText}>{props.text}</Text>
         )}
