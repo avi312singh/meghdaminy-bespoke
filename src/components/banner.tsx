@@ -18,7 +18,9 @@ export default function Banner({ heading, text, children }: IBannerProps) {
           <Text bold variant="medium">
             {text}
           </Text>
-          <Text variant="leadBanner">{children[0].internal.content}</Text>
+          {children[0] && (
+            <Text variant="leadBanner">{children[0].internal.content}</Text>
+          )}
         </Container>
       </Flex>
     </Section>
