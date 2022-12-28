@@ -87,6 +87,16 @@ export const query = graphql`
             }
           }
         }
+        ... on ContentfulHomepageHero {
+          image {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
+        ... on ContentfulAboutHero {
+          image {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
         ...MultipleImagesContent
         ...TestimonialListContent
       }
