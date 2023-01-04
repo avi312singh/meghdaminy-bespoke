@@ -10,24 +10,22 @@ export interface AboutHeroProps {
   image?: HomepageImage
 }
 
-export default function AboutHero(props: AboutHeroProps) {
+export default function AboutHero({ heading, text, image }: AboutHeroProps) {
   return (
     <Section>
       <Container>
-        {props.heading && (
+        {heading && (
           <SuperHeading className={styles.aboutHeroHeader}>
-            {props.heading}
+            {heading}
           </SuperHeading>
         )}
-        {props.text && (
-          <Text className={styles.aboutHeroText}>{props.text}</Text>
-        )}
+        {text && <Text className={styles.aboutHeroText}>{text}</Text>}
       </Container>
       <Container width="wide">
-        {props.image && (
+        {image && (
           <GatsbyImage
-            alt={props.image.alt}
-            image={getImage(props.image.gatsbyImageData)}
+            alt={image.alt}
+            image={getImage(image.gatsbyImageData)}
             className={styles.aboutHeroImage}
           />
         )}
