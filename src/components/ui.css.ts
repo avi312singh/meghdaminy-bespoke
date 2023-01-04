@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css"
+import { style, styleVariants, keyframes } from "@vanilla-extract/css"
 import { calc } from "@vanilla-extract/css-utils"
 import { theme } from "../theme.css"
 
@@ -16,6 +16,11 @@ export const container = style({
   marginRight: "auto",
   paddingLeft: theme.space[4],
   paddingRight: theme.space[4],
+})
+
+const fadeIn = keyframes({
+  "0%": { opacity: "0" },
+  "100%": { opacity: "1" },
 })
 
 export type Containers = "normal" | "wide" | "narrow" | "tight"
@@ -271,11 +276,6 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontWeight: theme.fontWeights.medium,
       lineHeight: theme.lineHeights.tight,
       letterSpacing: theme.letterSpacings.tight,
-      "@media": {
-        [media.medium]: {
-          fontSize: theme.fontSizes[6],
-        },
-      },
     },
   ],
   headerSmall: [
@@ -288,6 +288,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       lineHeight: theme.lineHeights.tight,
       letterSpacing: theme.letterSpacings.wide,
       // textTransform: "uppercase",
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   body: [
@@ -298,6 +304,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontWeight: theme.fontWeights.normal,
       lineHeight: theme.lineHeights.text,
       letterSpacing: theme.letterSpacings.normal,
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   lead: [
@@ -308,6 +320,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontWeight: theme.fontWeights.normal,
       lineHeight: theme.lineHeights.text,
       letterSpacing: theme.letterSpacings.normal,
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   leadBanner: [
@@ -319,6 +337,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       lineHeight: theme.lineHeights.text,
       letterSpacing: theme.letterSpacings.normal,
       whiteSpace: "pre-line",
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   superHeading: [
@@ -335,6 +359,10 @@ export const text: Record<TextVariants, string> = styleVariants({
         [media.small]: {
           fontSize: theme.fontSizes[7],
         },
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
       },
     },
   ],
@@ -349,6 +377,8 @@ export const text: Record<TextVariants, string> = styleVariants({
       letterSpacing: theme.letterSpacings.tight,
       "@media": {
         [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
           fontSize: theme.fontSizes[6],
         },
       },
@@ -370,6 +400,8 @@ export const text: Record<TextVariants, string> = styleVariants({
       color: theme.colors.background,
       "@media": {
         [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
           fontSize: theme.fontSizes[5],
         },
       },
@@ -383,6 +415,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontWeight: theme.fontWeights.extrabold,
       lineHeight: theme.lineHeights.tight,
       letterSpacing: theme.letterSpacings.tight,
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   subheadSmall: [
@@ -393,6 +431,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontWeight: theme.fontWeights.extrabold,
       lineHeight: theme.lineHeights.tight,
       letterSpacing: theme.letterSpacings.tight,
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   kicker: [
@@ -405,6 +449,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       lineHeight: theme.lineHeights.tight,
       letterSpacing: theme.letterSpacings.wide,
       textTransform: "uppercase",
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   caps: [
@@ -416,6 +466,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       letterSpacing: theme.letterSpacings.wide,
       textTransform: "uppercase",
       fontStyle: "normal",
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   stat: [
@@ -425,6 +481,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontSize: theme.fontSizes[6],
       fontWeight: theme.fontWeights.medium,
       lineHeight: theme.lineHeights.tight,
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   statLabel: [
@@ -433,6 +495,12 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontWeight: theme.fontWeights.bold,
       fontSize: theme.fontSizes[4],
       lineHeight: theme.lineHeights.heading,
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   small: [
@@ -440,12 +508,24 @@ export const text: Record<TextVariants, string> = styleVariants({
     {
       fontSize: theme.fontSizes[1],
       marginBottom: theme.space[2],
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   medium: [
     margin0,
     {
       fontSize: theme.fontSizes[3],
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   mega: [
@@ -457,6 +537,8 @@ export const text: Record<TextVariants, string> = styleVariants({
       letterSpacing: theme.letterSpacings.tight,
       "@media": {
         [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
           fontSize: "360px",
         },
       },
@@ -468,13 +550,31 @@ export const text: Record<TextVariants, string> = styleVariants({
       fontSize: theme.fontSizes[1],
       marginBottom: theme.space[2],
       color: theme.colors.primary,
+      "@media": {
+        [media.medium]: {
+          animationName: fadeIn,
+          animationDuration: "3.5s",
+        },
+      },
     },
   ],
   center: {
     textAlign: "center",
+    "@media": {
+      [media.medium]: {
+        animationName: fadeIn,
+        animationDuration: "3.5s",
+      },
+    },
   },
   bold: {
     fontWeight: theme.fontWeights.bold,
+    "@media": {
+      [media.medium]: {
+        animationName: fadeIn,
+        animationDuration: "3.5s",
+      },
+    },
   },
 })
 
@@ -494,6 +594,12 @@ export const navlink = style({
   ":hover": {
     color: theme.colors.active,
   },
+  "@media": {
+    [media.medium]: {
+      animationName: fadeIn,
+      animationDuration: "2s",
+    },
+  },
 })
 
 export const navButtonlink = style({
@@ -510,6 +616,12 @@ export const navButtonlink = style({
   ":hover": {
     color: theme.colors.active,
     cursor: "pointer",
+  },
+  "@media": {
+    [media.medium]: {
+      animationName: fadeIn,
+      animationDuration: "2s",
+    },
   },
 })
 
