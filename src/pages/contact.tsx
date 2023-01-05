@@ -129,12 +129,9 @@ export default function contact() {
                   )
                 })}
             </FlexList>
-            <Flex>
-              <Wrapper apiKey={"YOUR_API_KEY"}>
-                <MyMapComponent center={{ lat: 1, lng: 1 }} zoom={8} />
-              </Wrapper>
-              <Text variant="body">GOOGLE MAPS PLACEHOLDER</Text>
-            </Flex>
+            <Wrapper apiKey={"AIzaSyB5t_6kK6yDMPV1Xf9zZpcd7_6i4dh6ap0"}>
+              <MyMapComponent center={{ lat: -50, lng: 60 }} zoom={8} />
+            </Wrapper>
             <Flex className={styles.email}>
               <Mail />
               <a href={"mailto:MEGHBESPOKETAILORING@OUTLOOK.COM"}>

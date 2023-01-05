@@ -359,7 +359,11 @@ export const text: Record<TextVariants, string> = styleVariants({
       letterSpacing: theme.letterSpacings.tight,
       animationName: fadeIn,
       animationDuration: "3.5s",
-      fontSize: theme.fontSizes[6],
+      "@media": {
+        [media.medium]: {
+          fontSize: theme.fontSizes[6],
+        },
+      },
     },
   ],
   carouselHeading: [
@@ -378,7 +382,11 @@ export const text: Record<TextVariants, string> = styleVariants({
       color: theme.colors.background,
       animationName: fadeIn,
       animationDuration: "3.5s",
-      fontSize: theme.fontSizes[5],
+      "@media": {
+        [media.medium]: {
+          fontSize: theme.fontSizes[5],
+        },
+      },
     },
   ],
   subhead: [
@@ -479,7 +487,11 @@ export const text: Record<TextVariants, string> = styleVariants({
       letterSpacing: theme.letterSpacings.tight,
       animationName: fadeIn,
       animationDuration: "3.5s",
-      fontSize: "360px",
+      "@media": {
+        [media.medium]: {
+          fontSize: "360px",
+        },
+      },
     },
   ],
   footer: [
