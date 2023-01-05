@@ -6,6 +6,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  document.addEventListener("contextmenu", (event) => event.preventDefault())
   return (
     <>
       <Slice alias="header" />

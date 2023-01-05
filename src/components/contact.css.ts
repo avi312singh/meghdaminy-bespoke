@@ -1,5 +1,6 @@
 import { keyframes, style } from "@vanilla-extract/css"
 import { theme } from "../theme.css"
+import { media } from "./ui.css"
 
 const socialFadeIn = keyframes({
   "0%": { opacity: "0" },
@@ -37,19 +38,23 @@ export const socialLink = style({
 })
 
 export const email = style({
-  textDecoration: "none",
   animationName: emailFadeIn,
   animationDuration: "3s",
-  "a:-webkit-any-link": {
-    textDecoration: "none",
-  },
 })
 
 export const number = style({
-  textDecoration: "none",
   animationName: numberFadeIn,
   animationDuration: "3.5s",
-  "a:-any-link": {
-    textDecoration: "none",
+})
+
+export const googleMap = style({
+  animationName: socialFadeIn,
+  animationDuration: "3s",
+  width: "100vw",
+  height: "400px",
+  "@media": {
+    [media.medium]: {
+      height: "550px",
+    },
   },
 })

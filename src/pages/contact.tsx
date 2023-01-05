@@ -21,7 +21,7 @@ import {
   Phone,
   Mail,
 } from "react-feather"
-import { Wrapper, Status } from "@googlemaps/react-wrapper"
+import { GoogleMap, LoadScript } from "@react-google-maps/api"
 
 const socialMedia = {
   INSTAGRAM: {
@@ -60,6 +60,11 @@ const getSocialName = ({ service }) => {
   return socialMedia[service]?.name
 }
 
+const center = {
+  lat: 51.58642447294273,
+  lng: 0.6052519639905846,
+}
+
 interface socialLinksData {
   layout: {
     footer: {
@@ -84,25 +89,6 @@ export default function contact() {
       }
     }
   `)
-
-  const MyMapComponent = ({
-    center,
-    zoom,
-  }: {
-    center: google.maps.LatLngLiteral
-    zoom: number
-  }) => {
-    const ref = React.useRef()
-
-    React.useEffect(() => {
-      new window.google.maps.Map(ref.current, {
-        center,
-        zoom,
-      })
-    })
-
-    return <div ref={ref} id="map" />
-  }
 
   const { socialLinks } = data.layout.footer
   return (
@@ -129,9 +115,13 @@ export default function contact() {
                   )
                 })}
             </FlexList>
-            <Wrapper apiKey={"AIzaSyB5t_6kK6yDMPV1Xf9zZpcd7_6i4dh6ap0"}>
-              <MyMapComponent center={{ lat: -50, lng: 60 }} zoom={8} />
-            </Wrapper>
+            <LoadScript googleMapsApiKey={process.env.GOOGLE_MAP_API_KEY}>
+              <GoogleMap
+                center={center}
+                zoom={11}
+                mapContainerClassName={styles.googleMap}
+              ></GoogleMap>
+            </LoadScript>
             <Flex className={styles.email}>
               <Mail />
               <a href={"mailto:MEGHBESPOKETAILORING@OUTLOOK.COM"}>
