@@ -45,6 +45,9 @@ export const email = style({
 export const number = style({
   animationName: numberFadeIn,
   animationDuration: "3.5s",
+  "> li": {
+    textDecoration: "none",
+  },
 })
 
 export const googleMap = style({
