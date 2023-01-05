@@ -115,7 +115,9 @@ export default function contact() {
                   )
                 })}
             </FlexList>
-            <LoadScript googleMapsApiKey={process.env.GOOGLE_MAP_API_KEY}>
+            <LoadScript
+              googleMapsApiKey={process.env.GATSBY_GOOGLE_MAP_API_KEY}
+            >
               <GoogleMap
                 center={center}
                 zoom={11}
