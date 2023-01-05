@@ -116,6 +116,7 @@ export default function contact() {
                 })}
             </FlexList>
             <LoadScript
+              onLoad={() => console.log("loading map")}
               googleMapsApiKey={process.env.GATSBY_GOOGLE_MAP_API_KEY}
             >
               <GoogleMap
